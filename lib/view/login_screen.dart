@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:onyx/res/components/round_button.dart';
 import 'package:onyx/utils/routes/routes_name.dart';
 import 'package:onyx/utils/utils.dart';
@@ -13,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _mobileNumberController = TextEditingController();
+  bool isChecked = false;
   bool isvisible = true;
 
   @override
@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -127,7 +127,16 @@ class _LoginScreenState extends State<LoginScreen> {
               // Agreement Text and Checkbox
               Row(
                 children: [
-                  Checkbox(value: false, onChanged: (bool? value) {}),
+                  Checkbox(
+                    value: isChecked,
+                    activeColor:
+                        isChecked ? Colors.black : null, // Set the active color
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value ?? false;
+                      });
+                    },
+                  ),
                   Expanded(
                     child: RichText(
                       text: const TextSpan(
@@ -150,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: 'Terms of Use ',
                             style: TextStyle(
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           TextSpan(
@@ -165,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: ' Privacy Policy',
                             style: TextStyle(
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
@@ -174,19 +183,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 320),
+              const SizedBox(height: 280),
               // Submit Button
               SizedBox(
                 height: height * .085,
               ),
               RoundButton(
-                title: 'Login',
+                title: 'Send OTP',
                 onPress: () {
                   if (_mobileNumberController.text.isEmpty) {
                     Utils.flushbarErrorMessage('Please enter number', context);
                   } else if (_mobileNumberController.text.length < 10) {
                     Utils.flushbarErrorMessage(
                         'Please enter valid number', context);
+                  } else if (!isChecked) {
+                    Utils.flushbarErrorMessage(
+                        'Please agree to the terms and conditions', context);
                   } else {
                     // ========== api call ==========
                     // Map data = {
@@ -197,52 +209,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, RoutesName.otpVerification);
                   }
                 },
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isvisible = !isvisible;
-                    });
-                    if (_mobileNumberController.text.length == 10) {
-                      Navigator.pushNamed(context, 'otpverification');
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Please Enter Valid Mobile Number",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    }
-                  },
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      const EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 16), // Adjust padding as needed
-                    ),
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      _mobileNumberController.text.length == 10
-                          ? Colors.black
-                          : Colors
-                              .grey, // Change the color here based on condition
-                    ),
-                  ),
-                  child: const Text(
-                    'Send OTP',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Lato-Light.ttf',
-                      color: Colors.white,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ),
+                color: _mobileNumberController.text.length >= 10
+                    ? Colors.black
+                    : Colors.grey,
               ),
             ],
           ),

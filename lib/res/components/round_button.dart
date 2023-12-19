@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:onyx/res/colors.dart';
 
 class RoundButton extends StatelessWidget {
   final String title;
   final bool loading;
   final VoidCallback onPress;
+  final Color color; // Add this line
+
   const RoundButton({
-    super.key,
+    Key? key,
     required this.title,
     this.loading = false,
     required this.onPress,
-  });
+    required this.color, // Add this line
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class RoundButton extends StatelessWidget {
         height: 55,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColors.roundbtnColor,
+          color: color, // Use the provided color parameter here
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
           child: loading
-              ? CircularProgressIndicator(
+              ? const CircularProgressIndicator(
                   color: Colors.white,
                 )
               : Text(

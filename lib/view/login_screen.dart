@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       isvisible = !isvisible;
                     });
                     if (_mobileNumberController.text.length == 10) {
-                      Navigator.pushNamed(context, 'otpverification_screen');
+                      Navigator.pushNamed(context, 'otpverification');
                     } else {
                       Fluttertoast.showToast(
                         msg: "Please Enter Valid Mobile Number",

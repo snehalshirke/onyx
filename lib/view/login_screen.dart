@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:onyx/res/components/round_button.dart';
+import 'package:onyx/utils/routes/routes_name.dart';
+import 'package:onyx/utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height + 1;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -172,6 +176,28 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 320),
               // Submit Button
+              SizedBox(
+                height: height * .085,
+              ),
+              RoundButton(
+                title: 'Login',
+                onPress: () {
+                  if (_mobileNumberController.text.isEmpty) {
+                    Utils.flushbarErrorMessage('Please enter number', context);
+                  } else if (_mobileNumberController.text.length < 10) {
+                    Utils.flushbarErrorMessage(
+                        'Please enter valid number', context);
+                  } else {
+                    // ========== api call ==========
+                    // Map data = {
+                    //   'email': _emailcontroller.text.toString(),
+                    //   'password': _passwordcontroller.text.toString(),
+                    // };
+                    // authViewMode.loginApi(data, context);
+                    Navigator.pushNamed(context, RoutesName.otpVerification);
+                  }
+                },
+              ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

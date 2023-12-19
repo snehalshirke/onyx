@@ -17,7 +17,7 @@ class RoundButton extends StatelessWidget {
     return InkWell(
       onTap: onPress,
       child: Container(
-        height: 40,
+        height: 55,
         width: double.infinity,
         decoration: BoxDecoration(
           color: AppColors.roundbtnColor,

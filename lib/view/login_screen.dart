@@ -223,46 +223,48 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _showReferralCodePopup(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double popupWidth =
+        screenWidth - 30; // Adjusted to consider 15 pixels padding on each side
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: const EdgeInsets.fromLTRB(
-              20, 20, 25, 20), // Adjust padding as needed
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(height: 20),
-              const Text(
-                'Enter Referral Code',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 1,
-                ),
-              ),
-              const SizedBox(
-                width: 50,
-                height: 40,
-              ), // Adjust the space between text and icon button
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the popup
-                },
-              ),
-            ],
+          contentPadding: EdgeInsets.zero, // Removed default padding
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(10), // Adjust the curve as needed
           ),
-          content: const SizedBox(
-            width: 50,
-            height: 70, // Set your desired width
+          content: Container(
+            padding: const EdgeInsets.all(15), // Adjust padding as needed
+            width: popupWidth,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: 10),
-                Center(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Enter Referral Code',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                const Center(
                   child: SizedBox(
                     width: double.infinity,
                     child: TextField(
@@ -273,9 +275,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                    height:
-                        5), // Adjust the space between textfield and close icon
+                SizedBox(height: 5),
               ],
             ),
           ),

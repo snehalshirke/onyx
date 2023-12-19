@@ -29,7 +29,7 @@ class Utils {
         //title: 'Flush Messages',
         borderRadius: BorderRadius.circular(8),
         messageColor: Colors.black,
-        backgroundColor: Colors.amber.shade600,
+        backgroundColor: Colors.red.shade600,
         duration: const Duration(seconds: 2),
       )..show(context),
     );

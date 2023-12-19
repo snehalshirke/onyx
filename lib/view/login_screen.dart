@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -33,7 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 30,
                     height: 30,
                   ),
-                  const SizedBox(width: 5),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   const Text(
                     'Onyx',
                     style: TextStyle(
@@ -46,9 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
               // Welcome Text
-              const Visibility(
+              const Padding(
+                padding: EdgeInsets.fromLTRB(6, 15, 0, 0),
                 child: Text(
                   'Welcome!',
                   style: TextStyle(
@@ -183,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 280),
+              const SizedBox(height: 240),
               // Submit Button
               SizedBox(
                 height: height * .085,
@@ -209,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, RoutesName.otpVerification);
                   }
                 },
-                color: _mobileNumberController.text.length >= 10
+                color: _mobileNumberController.text.length >= 10 && isChecked
                     ? Colors.black
                     : Colors.grey,
               ),

@@ -33,8 +33,10 @@ class RoundButton extends StatelessWidget {
               : Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato-Bold.ttf',
                   ),
                 ),
         ),

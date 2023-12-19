@@ -82,7 +82,7 @@ flutter:
   fonts:
     - family: FontMain
       fonts:
-       - asset: assets/fonts/Lato-Light.ttf
+       - asset: assets/fonts/
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

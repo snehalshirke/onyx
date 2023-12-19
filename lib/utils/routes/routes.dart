@@ -9,13 +9,15 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const SplashScreen());
       default:
-        return MaterialPageRoute(builder: (_) {
-          return const Scaffold(
-            body: Center(
-              child: Text('No routes defined'),
-            ),
-          );
-        });
+        return MaterialPageRoute(
+          builder: (_) {
+            return const Scaffold(
+              body: Center(
+                child: Text('No routes defined'),
+              ),
+            );
+          },
+        );
     }
   }
 }

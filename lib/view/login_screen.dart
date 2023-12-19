@@ -35,9 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         fontFamily: 'Lato-Bold.ttf',
-                        letterSpacing: 0.2),
+                        height: 1.3,
+                        letterSpacing: 0.8),
                   ),
                 ],
               ),
@@ -49,9 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
-                    fontFamily: 'Lato-Light.ttf',
+                    fontFamily: 'Lato-Bold.ttf',
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
+                    letterSpacing: 1.2,
                   ),
                 ),
               ),
@@ -61,7 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 'Please enter mobile number to receive an OTP',
                 style: TextStyle(
                   fontFamily: 'Lato-Light.ttf',
-                  color: Colors.grey.shade800,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade700,
                   fontSize: 14,
                   letterSpacing: 1,
                 ),
@@ -73,8 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontFamily: 'Lato-Light.ttf',
                   color: Colors.grey.shade700,
+                  fontWeight: FontWeight.w500,
                   fontSize: 14,
-                  letterSpacing: 1,
+                  letterSpacing: 1.2,
                 ),
               ),
               const SizedBox(height: 8),
@@ -177,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       isvisible = !isvisible;
                     });
                     if (_mobileNumberController.text.length == 10) {
-                      Navigator.pushNamed(context, 'otpverification');
+                      Navigator.pushNamed(context, 'otpverification_screen');
                     } else {
                       Fluttertoast.showToast(
                         msg: "Please Enter Valid Mobile Number",

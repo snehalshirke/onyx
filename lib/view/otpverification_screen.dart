@@ -113,7 +113,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 children: [
                   // Text at the top of the background
                   Container(
-                    padding: const EdgeInsets.only(left: 18.0),
+                    padding: const EdgeInsets.only(left: 16.0),
                     child: const Text(
                       "Enter The Verification Code Sent To",
                       style: TextStyle(
@@ -121,7 +121,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         letterSpacing: 1,
-                        fontFamily: 'Barlow-Medium.ttf',
+                        fontFamily: 'Lato-Light.ttf',
                       ),
                     ),
                   ),
@@ -246,14 +246,20 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       onTap: () {
                         // Handle text tap
                       },
-                      child: Text(
+                      child: const Text(
                         "Resend Code",
                         style: TextStyle(
+                          shadows: [
+                            Shadow(
+                              color: Colors.black,
+                              offset: Offset(0, -1),
+                            )
+                          ],
+                          color: Colors.transparent,
                           decoration: TextDecoration.underline,
-                          fontSize: 14,
-                          color: Colors.grey.shade800,
-                          fontWeight: FontWeight.w400,
-                          height: 2,
+                          decorationColor: Colors.black,
+                          decorationThickness: 1,
+                          decorationStyle: TextDecorationStyle.solid,
                         ),
                       ),
                     ),

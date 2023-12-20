@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onyx/res/components/round_button.dart';
 import 'package:onyx/utils/routes/routes_name.dart';
+import 'package:onyx/utils/utils.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
@@ -135,23 +136,35 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                   // Row with text and pencil icon
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "9867716283",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue,
+                      GestureDetector(
+                        onTap: () {
+                          // Handle text tap
+                        },
+                        child: const Text(
+                          "9867716283",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                         height: 1,
                       ),
-                      Icon(
-                        Icons.edit,
-                        color: Colors.blue,
+                      // GestureDetector for the icon
+                      GestureDetector(
+                        onTap: () {
+                          // Handle icon tap
+                          Navigator.pushNamed(context, RoutesName.login);
+                        },
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.blue,
+                        ),
                       ),
                     ],
                   ),

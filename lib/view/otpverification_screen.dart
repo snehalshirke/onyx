@@ -190,6 +190,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                               counterText: "", // Remove the character count
                             ),
                             onChanged: (value) {
+                              // Trim the input and move focus accordingly
+                              value = value.trim();
                               if (value.isEmpty) {
                                 // Move focus to the previous TextField
                                 if (index > 0) {
@@ -201,6 +203,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                   _focusNodes[index + 1].requestFocus();
                                 }
                               }
+                              updateButtonState(); // Update the button state when any text changes
                             },
                           ),
                         ),
@@ -260,7 +263,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   RoundButton(
                     title: 'Send OTP',
                     onPress: () {
-                      Navigator.pushNamed(context, RoutesName.home);
+                      if (isButtonEnabled) {
+                        // All text fields are not empty, navigate to the next page
+                        Navigator.pushNamed(context, RoutesName.home);
+                      }
+                      //  Navigator.pushNamed(context, RoutesName.home);
                     },
                     color: isButtonEnabled ? Colors.black : Colors.grey,
                   ),

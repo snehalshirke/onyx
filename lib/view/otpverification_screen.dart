@@ -13,6 +13,7 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+  final FocusNode _firstTextFieldFocusNode = FocusNode();
   final List<TextEditingController> _controllers =
       List.generate(6, (index) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(6, (index) => FocusNode());
@@ -23,6 +24,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   void initState() {
     super.initState();
+    _focusNodes[0].requestFocus();
+    _firstTextFieldFocusNode.requestFocus();
     for (int i = 0; i < _controllers.length; i++) {
       _controllers[i].addListener(updateButtonState);
     }
@@ -187,7 +190,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                               counterText: "", // Remove the character count
                             ),
                             onChanged: (value) {
-                              if (value.length == 1) {
+                              if (value.isEmpty) {
+                                // Move focus to the previous TextField
+                                if (index > 0) {
+                                  _focusNodes[index - 1].requestFocus();
+                                }
+                              } else if (value.length == 1) {
                                 // Move focus to the next TextField
                                 if (index < 5) {
                                   _focusNodes[index + 1].requestFocus();
@@ -265,10 +273,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     );
   }
 
-  void handleVerifyButton() {
-    // Handle button press
-    Navigator.pushNamed(context, RoutesName.home);
-  }
+  // void handleVerifyButton() {
+  //   // Handle button press
+  //   Navigator.pushNamed(context, RoutesName.home);
+  // }
 
   void startTimer() {
     _timer?.cancel(); // Cancel the previous timer if it exists

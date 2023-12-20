@@ -20,6 +20,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   Timer? _timer;
   int _secondsRemaining = 30;
   bool isTimerRunning = false;
+  String correctOtp = '101010';
+  bool showError = false;
 
   @override
   void initState() {
@@ -198,25 +200,41 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
                             maxLength: 1,
-                            style: const TextStyle(fontSize: 18),
-                            decoration: const InputDecoration(
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: showError && isButtonEnabled
+                                  ? Colors.red
+                                  : Colors
+                                      .black, // Change text color based on showError
+                            ),
+                            decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.symmetric(vertical: 10),
-                              focusedBorder: UnderlineInputBorder(
+                                  const EdgeInsets.symmetric(vertical: 10),
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.blue),
                               ),
+                              // Change border color based on showError
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: showError && isButtonEnabled
+                                        ? Colors.red
+                                        : Colors.black),
+                              ),
                               counterText: "", // Remove the character count
+                              // Change error text color based on showError
+                              errorStyle: TextStyle(
+                                color:
+                                    showError ? Colors.red : Colors.transparent,
+                              ),
                             ),
                             onChanged: (value) {
                               // Trim the input and move focus accordingly
                               value = value.trim();
                               if (value.isEmpty) {
-                                // Move focus to the previous TextField
                                 if (index > 0) {
                                   _focusNodes[index - 1].requestFocus();
                                 }
                               } else if (value.length == 1) {
-                                // Move focus to the next TextField
                                 if (index < 5) {
                                   _focusNodes[index + 1].requestFocus();
                                 }
@@ -228,9 +246,32 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                     ),
                   ),
+                  Visibility(
+                    visible: showError && isButtonEnabled,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.error,
+                            color: Colors.red,
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            "Invalid Code.Please Enter A Valid Code.",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
 
                   // Row with text and timer
-                  const SizedBox(height: 70),
+                  const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -299,8 +340,26 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     title: 'Send OTP',
                     onPress: () {
                       if (isButtonEnabled) {
-                        // All text fields are not empty, navigate to the next page
-                        Navigator.pushNamed(context, RoutesName.home);
+                        // Check if entered OTP is correct
+                        if (_controllers
+                                .map((controller) => controller.text)
+                                .join() ==
+                            correctOtp) {
+                          // Correct OTP, navigate to the next page
+                          Navigator.pushNamed(context, RoutesName.home);
+                          setState(
+                            () {
+                              showError = false;
+                            },
+                          );
+                        } else {
+                          // Incorrect OTP, show error message and make fields red
+                          setState(
+                            () {
+                              showError = true;
+                            },
+                          );
+                        }
                       }
                     },
                     color: isButtonEnabled ? Colors.black : Colors.grey,

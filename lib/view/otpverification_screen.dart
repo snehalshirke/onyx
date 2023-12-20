@@ -90,7 +90,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       width: 15,
                     ),
                     const Text(
-                      "LOGO",
+                      "Onyx",
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.black,

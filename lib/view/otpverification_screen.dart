@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onyx/res/components/round_button.dart';
 import 'package:onyx/utils/routes/routes_name.dart';
-import 'package:onyx/utils/utils.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});

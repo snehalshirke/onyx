@@ -50,6 +50,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     super.dispose();
   }
 
+  String formatTime(int seconds) {
+    Duration duration = Duration(seconds: seconds);
+    String twoDigits(int n) => n.toString().padLeft(1, "0");
+    return "${twoDigits(duration.inMinutes.remainder(60))}:${twoDigits(duration.inSeconds.remainder(60))}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,9 +226,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       GestureDetector(
                         onTap: () {
                           startTimer();
-                          setState(() {
-                            isTimerRunning = true;
-                          });
+                          setState(
+                            () {
+                              isTimerRunning = true;
+                            },
+                          );
                         },
                         child: Text(
                           "Resend OTP in ",
@@ -232,9 +240,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           ),
                         ),
                       ),
-                      // Display either the remaining time or "0:00"
+                      // Display the formatted remaining time
                       Text(
-                        isTimerRunning ? '$_secondsRemaining' : '0:00',
+                        isTimerRunning ? formatTime(_secondsRemaining) : '0:00',
                         style: const TextStyle(
                           color: Colors.red,
                         ),
@@ -305,15 +313,20 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     _timer?.cancel(); // Cancel the previous timer if it exists
     _secondsRemaining = 30;
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_secondsRemaining > 0) {
-          _secondsRemaining--;
-        } else {
-          _timer?.cancel(); // Cancel the timer when it reaches 0
-          isTimerRunning = false;
-        }
-      });
-    });
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        setState(
+          () {
+            if (_secondsRemaining > 0) {
+              _secondsRemaining--;
+            } else {
+              _timer?.cancel(); // Cancel the timer when it reaches 0
+              isTimerRunning = false;
+            }
+          },
+        );
+      },
+    );
   }
 }

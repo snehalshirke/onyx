@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onyx/res/components/round_button.dart';
+import 'package:onyx/utils/routes/routes_name.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
@@ -60,7 +62,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     // Handle back button press
-                    Navigator.pushNamed(context, 'loginpage');
+                    Navigator.pushNamed(context, RoutesName.login);
                   },
                 ),
                 const SizedBox(width: 80),
@@ -247,29 +249,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                   // Full-width button
                   const SizedBox(height: 50),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'homepage');
-                      },
-                      //onPressed: isButtonEnabled ? () => startTimer() : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            isButtonEnabled ? Colors.black : Colors.grey,
-                      ),
-                      child: const Text(
-                        "Verify",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Barlow-Medium.ttf',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ),
+                  RoundButton(
+                    title: 'Send OTP',
+                    onPress: () {
+                      Navigator.pushNamed(context, RoutesName.home);
+                    },
+                    color: isButtonEnabled ? Colors.black : Colors.grey,
                   ),
                 ],
               ),
@@ -282,7 +267,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   void handleVerifyButton() {
     // Handle button press
-    Navigator.pushNamed(context, 'homepage');
+    Navigator.pushNamed(context, RoutesName.home);
   }
 
   void startTimer() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:onyx/utils/routes/routes_name.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -124,7 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: const Icon(Icons.arrow_back),
                       onPressed: () {
                         // Handle back button press
-                        Navigator.pushNamed(context, 'otpverification');
+                        Navigator.pushNamed(
+                            context, RoutesName.otpVerification);
                       },
                     ),
                     const SizedBox(

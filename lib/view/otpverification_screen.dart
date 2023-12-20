@@ -302,7 +302,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         // All text fields are not empty, navigate to the next page
                         Navigator.pushNamed(context, RoutesName.home);
                       }
-                      //  Navigator.pushNamed(context, RoutesName.home);
                     },
                     color: isButtonEnabled ? Colors.black : Colors.grey,
                   ),
@@ -314,11 +313,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       ),
     );
   }
-
-  // void handleVerifyButton() {
-  //   // Handle button press
-  //   Navigator.pushNamed(context, RoutesName.home);
-  // }
 
   void startTimer() {
     _timer?.cancel(); // Cancel the previous timer if it exists

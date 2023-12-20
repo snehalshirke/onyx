@@ -20,6 +20,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   bool isButtonEnabled = false;
   Timer? _timer;
   int _secondsRemaining = 30;
+  bool isTimerRunning = false;
 
   @override
   void initState() {
@@ -218,7 +219,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Start the timer stopwatch
+                          startTimer();
+                          setState(() {
+                            isTimerRunning = true;
+                          });
                         },
                         child: Text(
                           "Resend OTP in ",
@@ -228,10 +232,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           ),
                         ),
                       ),
-                      // Add your timer widget here
-                      const Text(
-                        "0:00",
-                        style: TextStyle(
+                      // Display either the remaining time or "0:00"
+                      Text(
+                        isTimerRunning ? '$_secondsRemaining' : '0:00',
+                        style: const TextStyle(
                           color: Colors.red,
                         ),
                       ),
@@ -245,6 +249,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     child: GestureDetector(
                       onTap: () {
                         // Handle text tap
+                        startTimer();
+                        setState(
+                          () {
+                            isTimerRunning = true;
+                          },
+                        );
                       },
                       child: const Text(
                         "Resend Code",
@@ -301,6 +311,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           _secondsRemaining--;
         } else {
           _timer?.cancel(); // Cancel the timer when it reaches 0
+          isTimerRunning = false;
         }
       });
     });

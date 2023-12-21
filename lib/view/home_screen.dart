@@ -496,8 +496,8 @@ class SquareListView extends StatelessWidget {
             border: Border.all(color: Colors.black, width: 1.0), // Black border
           ),
           child: SizedBox(
-            height: 100,
-            width: 100,
+            height: 125,
+            width: 120,
             child: ClipRect(
               child: Image.asset(imagePath),
             ),

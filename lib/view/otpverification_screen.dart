@@ -308,7 +308,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     alignment: Alignment.center,
                     child: GestureDetector(
                       onTap: () {
-                        // Handle text tap
                         startTimer();
                         setState(
                           () {

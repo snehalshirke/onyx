@@ -146,26 +146,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              // Horizontal Category RecyclerView
-              Container(
-                height: 100,
-                alignment: const Alignment(100, 100), // Adjust height as needed
-                child: Padding(
-                  padding: const EdgeInsets.all(19.52),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 7,
-                    itemBuilder: (context, index) {
-                      // Build circular category items here
-                      return CircleAvatar(
-                        radius: 35,
-                        backgroundColor: Colors.grey.shade600,
-                        //child: Text('Category $index'),
-                      );
-                    },
+              const SizedBox(
+                height: 140,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(width: 15),
+                      CircularListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'T-shirt',
+                      ),
+                      SizedBox(width: 15),
+                      CircularListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Shirt',
+                      ),
+                      SizedBox(width: 15),
+                      CircularListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Co-ords',
+                      ),
+                      SizedBox(width: 15),
+                      CircularListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Bottoms',
+                      ),
+                      SizedBox(width: 15),
+                      CircularListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Tops',
+                      ),
+                    ],
                   ),
                 ),
               ),
+
+              // Horizontal Category RecyclerView
+              // Container(
+              //   height: 100,
+              //   alignment: const Alignment(100, 100), // Adjust height as needed
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(19.52),
+              //     child: ListView.builder(
+              //       scrollDirection: Axis.horizontal,
+              //       itemCount: 7,
+              //       itemBuilder: (context, index) {
+              //         // Build circular category items here
+              //         return CircleAvatar(
+              //           radius: 35,
+              //           backgroundColor: Colors.grey.shade600,
+              //           //child: Text('Category $index'),
+              //         );
+              //       },
+              //     ),
+              //   ),
+              // ),
 
               // Text "Find your style"
               const Padding(
@@ -185,94 +222,102 @@ class _HomeScreenState extends State<HomeScreen> {
               //==========================================================================================//
               //#CONTAINER CLASS 1
               // Two Horizontal RecyclerViews with Categories
-              const SizedBox(height: 0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 0, 10, 10),
-                child: Container(
-                  height: 150, // Adjust height as needed
-                  margin: const EdgeInsets.symmetric(horizontal: 7),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+
+              const SizedBox(
+                height: 160,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(height: 5),
-                      Container(
-                        height: 120,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            List<String> categoryNames = [
-                              'Mike',
-                              'Darla',
-                              'Clain',
-                              'Eleven',
-                            ];
-                            return Container(
-                              width: 110,
-                              height: 240,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              color: const Color.fromARGB(255, 211, 203, 203),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    categoryNames[index],
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'T-shirt',
+                      ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Shirt',
+                      ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Co-ords',
                       ),
                     ],
                   ),
                 ),
               ),
 
-              const SizedBox(height: 0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 0, 10, 10),
-                child: Container(
-                  height: 150, // Adjust height as needed
-                  margin: const EdgeInsets.symmetric(horizontal: 7),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              // const SizedBox(height: 0),
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(12, 0, 10, 10),
+              //   child: Container(
+              //     height: 150, // Adjust height as needed
+              //     margin: const EdgeInsets.symmetric(horizontal: 7),
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         const SizedBox(height: 5),
+              //         Container(
+              //           height: 120,
+              //           child: ListView.builder(
+              //             scrollDirection: Axis.horizontal,
+              //             itemCount: 3,
+              //             itemBuilder: (context, index) {
+              //               List<String> categoryNames = [
+              //                 'Mike',
+              //                 'Darla',
+              //                 'Clain',
+              //                 'Eleven',
+              //               ];
+              //               return Container(
+              //                 width: 110,
+              //                 height: 240,
+              //                 margin:
+              //                     const EdgeInsets.symmetric(horizontal: 10),
+              //                 color: const Color.fromARGB(255, 211, 203, 203),
+              //                 child: Column(
+              //                   mainAxisAlignment: MainAxisAlignment.center,
+              //                   children: [
+              //                     Text(
+              //                       categoryNames[index],
+              //                       style: const TextStyle(color: Colors.white),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               );
+              //             },
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+
+              const SizedBox(
+                height: 160,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(height: 5),
-                      Container(
-                        height: 120,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            List<String> categoryNames = [
-                              'Mike',
-                              'Darla',
-                              'Clain',
-                              'Eleven',
-                            ];
-                            return Container(
-                              width: 110,
-                              height: 240,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              color: const Color.fromARGB(255, 211, 203, 203),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    categoryNames[index],
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Tops',
+                      ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Bottoms',
+                      ),
+                      SizedBox(width: 25),
+                      SquareListView(
+                        imagePath: 'assets/images/logoimg.jpg',
+                        name: 'Dress',
                       ),
                     ],
                   ),
@@ -387,6 +432,82 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       }),
+    );
+  }
+}
+
+class CircularListView extends StatelessWidget {
+  final String imagePath;
+  final String name;
+
+  const CircularListView({
+    Key? key,
+    required this.imagePath,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.black, width: 1.0), // Black border
+          ),
+          child: SizedBox(
+            height: 70,
+            width: 70,
+            child: ClipOval(
+              child: Image.asset(imagePath),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(name),
+      ],
+    );
+  }
+}
+
+class SquareListView extends StatelessWidget {
+  final String imagePath;
+  final String name;
+
+  const SquareListView({
+    Key? key,
+    required this.imagePath,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle, // Change to rectangle
+            border: Border.all(color: Colors.black, width: 1.0), // Black border
+          ),
+          child: SizedBox(
+            height: 100,
+            width: 100,
+            child: ClipRect(
+              child: Image.asset(imagePath),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(name),
+      ],
     );
   }
 }

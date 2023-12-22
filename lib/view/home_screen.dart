@@ -126,7 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         // Handle back button press
                         Navigator.pushNamed(
-                            context, RoutesName.otpVerification);
+                          context,
+                          RoutesName.otpVerification,
+                        );
                       },
                     ),
                     const SizedBox(
@@ -135,12 +137,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Text(
                       'Categories',
                       style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontFamily: 'IBMPlexSansCondensed-SemiBold.ttf',
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                          height: 1),
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontFamily: 'IBMPlexSansCondensed-SemiBold.ttf',
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                        height: 1,
+                      ),
                     ),
                   ],
                 ),

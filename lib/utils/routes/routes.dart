@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onyx/utils/routes/routes_name.dart';
-import 'package:onyx/view/home_screen.dart';
+import 'package:onyx/view/home.dart';
 import 'package:onyx/view/login_screen.dart';
 import 'package:onyx/view/otpverification_screen.dart';
 import 'package:onyx/view/splash_screen.dart';
